@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Frontend Mentor | E-commerce product page</title>
+</head>
+<script>
+  var i=0;
+  var num=0;
+  function add()
+  {
+    var a = document.getElementById("change");
+
+    i = i + 1;
+    a.innerHTML = i;
+  }
+  function del()
+  {
+    var a = document.getElementById("change");
+
+    if(i>0)
+    {
+    i = i - 1;
+
+    a.innerHTML = i;
+    }
+    else
+    {
+      i = 0;
+
+      a.innerHTML = i;
+    }
+  }
+  function foto(g)
+  {
+    var g=g;
+    var h = document.getElementById("mainFoto");
+    var t = document.getElementById("boxForImg"+g+"");
+    var n = document.getElementById("im"+g+"");
+    var o = 1;
+
+    h.src = "./images/image-product-"+g+".jpg";
+    t.style.border = "2px solid hsl(26, 100%, 55%)";
+    n.style.opacity="28%";
+    
+
+    while(o<=10)
+    {
+      if(o!=g)
+      {
+        document.getElementById("boxForImg"+o+"").style.border = "none";
+        document.getElementById("im"+o+"").style.opacity = "100%";
+      }
+      o++;
+    }
+  }
+  function cart1(j,p)
+  {
+    const bg = document.createElement("div");
+    bg.classList.add(p+"","dl");
+    bg.innerText = j;
+    const gh = document.querySelector(".element");
+    gh.appendChild(bg);
+  }
+  function cart()
+  {
+    if(num==1)
+    {
+      const toDell = document.querySelectorAll(".dl");
+      for (const el of toDell) 
+      {
+        el.remove(); //usuwamy tylko z HTML
+      }
+      num=0;
+    }
+    else
+    {
+    const cart = document.createElement("div");
+    cart.classList.add("element","dl");
+    cart.style.position = 'absolute';
+    const div = document.querySelector(".page");
+    div.appendChild(cart);
+    cart1("Cart","zm");
+    num=1;
+    }
+  }
+</script>
+<body>
+<div>
+  <div class="page">
+  <header class="logo">
+    <button class="menu"><img class="menu" src="./images/icon-menu.svg"></button>
+    <img src="./images/logo.svg" alt="Sneaker" class="logos">
+    <div class="category">Collections</div>
+    <div class="category">Men</div>
+    <div class="category">Women</div>
+    <div class="category">About</div>
+    <div class="category">Contact</div>
+    <div class="right">
+      <img src="./images/image-avatar.png" class="avatar">
+      <img src="./images/icon-cart.svg" class="cart" onclick="cart()">
+    </div>
+  </header>
+    <div class="item">
+      <div class="itemLeft">
+        <div class="mainimg">
+          <img src="./images/image-product-1.jpg" alt="Fall Limited Edition Sneakers" id="mainFoto" class="imgMain">
+        </div>
+        <div class="lowerimg">
+          
+          <div class="boxForImg1" id="boxForImg1">
+            <img src="./images/image-product-1-thumbnail.jpg" onclick="foto(1)" id="im1" class="img">
+          </div>  
+          <div class="boxForImg2" id="boxForImg2">
+            <img src="./images/image-product-2-thumbnail.jpg" onclick="foto(2)" id="im2" class="img">
+          </div>  
+          <div class="boxForImg3" id="boxForImg3">
+            <img src="./images/image-product-3-thumbnail.jpg" onclick="foto(3)" id="im3" class="img">
+         </div>  
+          <div class="boxForImg4" id="boxForImg4">
+            <img src="./images/image-product-4-thumbnail.jpg" onclick="foto(4)" id="im4" class="img">
+          </div>
+      </div>
+      </div>
+      <div class="itemRight">
+      <div class="prodDesc">
+      <h4>Sneaker Company</h4>
+
+      <h1>Fall Limited Edition Sneakers</h1>
+      
+      <p class="gray">These low-profile sneakers are your perfect casual wear companion. Featuring a 
+      durable rubber outer sole, they'll withstand everything the weather can offer.</p>
+      </div>
+      <div class="cost">
+      <h2 class="bold">$125.00</h2>
+      <div class="proc">
+      <p class="bold">50%</p>
+      </div>
+      <p class="discount">$250.00</p>
+      </div>
+      <div class="buying">
+      <div class="count">
+        <button type="button" onclick="del()"><img src="./images/icon-minus.svg"></button>
+        <div id="count">
+          <p id="change">0</p>
+        </div>
+        <button type="button" onclick="add()"><img src="./images/icon-plus.svg"></button>
+      </div>
+      <div class="buy">
+        <button class="button" type="submit"><img src="./images/icon-cart.svg" class="whiteFilter">Add to cart</button>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+  </div>
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+</body>
+</html>
